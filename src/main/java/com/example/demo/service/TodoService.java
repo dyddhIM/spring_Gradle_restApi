@@ -79,4 +79,17 @@ public class TodoService {
 		return retrive(entity.getUserId()); // 유저의 정보 조회
 	}
 	
+	
+	public List<TodoEntity> delte(final TodoEntity entity){
+		validate(entity);
+		
+		try {
+			repository.delete(entity);
+			
+		} catch (Exception e) {
+			log.error("error delting entity "+ entity.getId(), e);
+			throw new RuntimeException("error delting entity "+ entity.getId());
+		}
+		return retrive(entity.getUserId());
+	}
 }
